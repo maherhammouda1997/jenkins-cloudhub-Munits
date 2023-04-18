@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="s-hs-covidtracking-main-suite.xml" />
+	<munit:test name="s-hs-covidtracking-main-test" doc:id="34ba0a63-9f49-4566-89ff-be936aa56ee5" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock APIkit Router" doc:id="ebaad0a7-8ced-4817-a364-6f255713d111" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="cb0ddb10-9e88-4eb5-9df1-1e1e982cef25" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[output application/json  --- readUrl('classpath://shscovidtrackingmaintest\mock_payload.dwl')]" mediaType="application/json " encoding="UTF-8" />
+					<munit-tools:attributes value="#[readUrl('classpath://shscovidtrackingmaintest\mock_attributes.dwl')]" />
+					<munit-tools:variables >
+						<munit-tools:variable key="outboundHeaders" value="#[readUrl('classpath://shscovidtrackingmaintest\mock_variable_.dwl')]" />
+						<munit-tools:variable key="date" value="#[output application/java --- readUrl('classpath://shscovidtrackingmaintest\mock_variable_1.dwl')]" mediaType="application/java" encoding="UTF-8" />
+						<munit-tools:variable key="httpStatus" value="#[readUrl('classpath://shscovidtrackingmaintest\mock_variable_2.dwl')]" />
+						<munit-tools:variable key="state" value="#[output application/java --- readUrl('classpath://shscovidtrackingmaintest\mock_variable_3.dwl')]" mediaType="application/java" encoding="UTF-8" />
+					</munit-tools:variables>
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+			<munit:set-event doc:name="Set Input" doc:id="1ddfc2c1-0a16-4558-93ab-2dfc8a727440" >
+				<munit:payload value="#[readUrl('classpath://shscovidtrackingmaintest\set-event_payload.dwl')]" encoding="UTF-8" />
+				<munit:attributes value="#[readUrl('classpath://shscovidtrackingmaintest\set-event_attributes.dwl')]" />
+			</munit:set-event>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to s-hs-covidtracking-main" doc:id="42b426b7-f111-4677-be69-8252d5bc9d83" name="s-hs-covidtracking-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert doc:name="Assert payload" doc:id="637e0fac-ffb9-4742-a98d-82c6f24cac00" message="The payload does not match">
+				<munit-tools:that ><![CDATA[#[%dw 2.0
+import shscovidtrackingmaintest::assert_expression_payload
+---
+assert_expression_payload::main({payload: payload, attributes: attributes, vars: vars})]]]></munit-tools:that>
+			</munit-tools:assert>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>

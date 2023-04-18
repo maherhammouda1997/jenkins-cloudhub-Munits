@@ -1,0 +1,9 @@
+#%RAML 1.0 ResourceType
+
+  post:
+    description: creation des données <<resourcePathName>>
+    body:
+      application/json:
+        example: |
+          <<bodyPost>>
+    is: [trait1]

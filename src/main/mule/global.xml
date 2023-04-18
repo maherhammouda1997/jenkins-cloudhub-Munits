@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd 
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	
+	<http:listener-config name="s-hs-covidtracking-httpListenerConfig">
+        <http:listener-connection host="0.0.0.0" port="${http.port}" readTimeout="${timeout}"/>
+    </http:listener-config>
+    <apikit:config name="s-hs-covidtracking-config" api="s-hs-covidtracking.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+	<http:request-config name="HTTP_Request_configuration_source" doc:name="HTTP Request configuration" doc:id="59ac2df9-fbf6-4222-bdde-7c8c1618dae3" >
+		<http:request-connection host="${source.host}" protocol="${source.protocol}"/>
+	</http:request-config>
+	<global-property doc:name="Global Property" doc:id="ae9a7e02-c3f3-4c31-b1c1-a5b142498f7c" name="mule.env" value="devLocal" />
+	<configuration-properties doc:name="Configuration properties" doc:id="1ff58055-b3d6-42ba-95f8-7385366df2d3" file="env\\${mule.env}.yaml" />
+    
+	
+	
+</mule>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns:validation="http://www.mulesoft.org/schema/mule/validation" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd 
+http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mule/validation/current/mule-validation.xsd">
+    <flow name="get:\data:s-hs-covidtracking-config">
+		<logger level="INFO" doc:name="START" doc:id="278cf053-cd72-4f5e-a4bc-4950c6894520" message="The system flow GET data - START"/>
+		<http:request method="${source.method}" doc:name="Request to source" doc:id="fba336a3-2807-4b32-90e9-b8a37f7d3a48" config-ref="HTTP_Request_configuration_source" path="${source.path}" responseTimeout="${timeout}"/>
+		<ee:transform doc:name="Payload" doc:id="1e62408e-ee60-4a53-874e-31e4d4cf3495" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="FINISH" doc:id="09d4e46c-0eac-4f4d-a6e9-9f1baf7fbcb5" message="The system flow GET data - FINISH"/>
+    </flow>
+	<flow name="get:\state\(state):s-hs-covidtracking-config">
+		<logger level="INFO" doc:name="START" doc:id="f53e8ccb-d1c9-4a7b-8f1a-d804713fd996" message="The system flow GET data per state - START"/>
+		<set-variable value="#[message.attributes.uriParams.state]" doc:name="state" doc:id="427a4326-2639-4140-81ca-4d4522a2e406" variableName="state" />
+		<validation:is-true doc:id="32bf57fe-3293-4b36-bb10-5eee18732022" expression="#[['ca', 'ny', 'oh', 'la', 'fl'] contains vars.state]" message="#['Invalid state ' ++ (vars.state default '')]" doc:name="state validation" />
+		<http:request method="${source.method}" doc:name="Request to source" doc:id="52b481dc-4968-418d-94ae-6dcee8eb12c8" config-ref="HTTP_Request_configuration_source" path="${source.path2}" responseTimeout="${timeout}">
+			<http:uri-params ><![CDATA[#[output application/java
+---
+{
+	state : vars.state
+}]]]></http:uri-params>
+		</http:request>
+		<ee:transform doc:name="Payload" doc:id="9d220f91-c428-4f20-b06c-280d5d59937b" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="FINISH" doc:id="12f78c6c-a928-4205-9399-a73bd2f9e602" message="The system flow GET data per state - FINISH"/>
+    </flow>
+    <flow name="get:\state\(state)\(date):s-hs-covidtracking-config">
+		<logger level="INFO" doc:name="START" doc:id="0f58df05-3ed6-4d1c-8aec-a1324542f997" message="The system flow GET data per state and date - START"/>
+		<set-variable value="#[message.attributes.uriParams.state]" doc:name="state" doc:id="5106c0c0-e7ef-460a-9001-9ad485412c48" variableName="state" />
+		<set-variable value="#[message.attributes.uriParams.date]" doc:name="date" doc:id="82f5cca3-d196-4dfb-83a6-da44184e0667" variableName="date" />
+		<validation:is-true doc:name="state validation" doc:id="b8519c89-3727-45ee-aa9e-866e48dd8a13" expression="#[['ca', 'ny', 'oh', 'la', 'fl'] contains vars.state]" message="#['Invalid state ' ++ (vars.state default '')]" />
+		<http:request method="${source.method}" doc:name="Request to source" doc:id="4bbcab1d-b7cc-4a3f-8f0c-c7466b5521f6" config-ref="HTTP_Request_configuration_source" path="${source.path3}" responseTimeout="${timeout}">
+			<http:uri-params ><![CDATA[#[output application/java
+---
+{
+	date : vars.date,
+	state : vars.state
+}]]]></http:uri-params>
+		</http:request>
+		<ee:transform doc:name="Payload" doc:id="bc39a2a1-ae01-4f41-8817-6b29d20d5229" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="FINISH" doc:id="d988d4b0-7006-40d9-85c1-3f03eb890f08" message="The system flow GET data per state and date - FINISH"/>
+    </flow>
+</mule>

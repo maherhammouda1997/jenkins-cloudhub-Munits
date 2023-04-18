@@ -1,0 +1,13 @@
+http:
+ port: "8081"
+ 
+source:
+  protocol: "HTTP"
+  method: "GET"
+  host: "api.covidtracking.com"
+  path: "/v1/us/daily.json"
+  path2: "/v1/states/{state}/current.json"
+  path3: "/v1/states/{state}/{date}.json"
+  
+  
+timeout : "999999999"

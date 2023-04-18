@@ -1,0 +1,41 @@
+#%RAML 1.0
+title: s-hs-covidtracking
+
+uses:
+  rt: library/resourceType.raml
+
+traits:
+  client-id-secret-required: !include exchange_modules/15cc2c15-78f0-4ca4-b98b-e9de46487573/client-id-enforcement/1.0.0/client-id-enforcement.raml
+
+  trait1: !include /exchange_modules/15cc2c15-78f0-4ca4-b98b-e9de46487573/trait-response-post-api/1.0.0/trait-response-post-api.raml
+
+/data:
+  is: [client-id-secret-required]
+  type:
+    rt.get:
+      exampleReponse1: !include example/dataExample.raml
+      
+/state/{state}:
+  is: [client-id-secret-required]
+  type:
+    rt.get:
+      uriParameters:
+        state:
+          type: string
+          required: true
+          enum: 
+            - ca
+            - ny
+            - oh
+            - la
+            - fl
+      exampleReponse1: !include example/perStateExample.raml
+        
+  /{date}:
+    is: [client-id-secret-required]
+    type:
+      rt.get:
+        uriParameters:
+          date:
+            required: true
+        exampleReponse1: !include example/perStateExample.raml

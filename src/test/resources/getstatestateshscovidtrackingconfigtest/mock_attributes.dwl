@@ -1,0 +1,32 @@
+{
+  "headers": {
+    "date": "Wed, 05 Apr 2023 09:57:13 GMT",
+    "content-type": "application/json; charset=utf-8",
+    "transfer-encoding": "chunked",
+    "connection": "keep-alive",
+    "x-origin-cache": "HIT",
+    "last-modified": "Mon, 14 Mar 2022 18:21:51 GMT",
+    "access-control-allow-origin": "*",
+    "etag": "W/\"622f87bf-58a\"",
+    "expires": "Wed, 05 Apr 2023 10:07:12 GMT",
+    "cache-control": "max-age=600",
+    "x-proxy-cache": "MISS",
+    "x-github-request-id": "6E4A:E1C1:A70E1:AB16C:642D45F8",
+    "via": "1.1 varnish",
+    "age": "0",
+    "x-served-by": "cache-ams21033-AMS",
+    "x-cache": "MISS",
+    "x-cache-hits": "0",
+    "x-timer": "S1680688633.895893,VS0,VE103",
+    "vary": "Accept-Encoding",
+    "x-fastly-request-id": "6cadf511138d92c75c8c28a259554b8e64f24d5e",
+    "cf-cache-status": "DYNAMIC",
+    "report-to": "{\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=4aBxGweRtZhCX1Mmz2PqcVTAC1XbxL647Za1KuNeXdnGG1zuV4eRgPt60MeRoitlYSzFfsuR6NBGsH3vS40z7bStDmvrhUzFSVlHuXzGaX84Ad6IY2Pj0bnAsQE5amEWMB5TilESF4U%3D\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+    "nel": "{\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+    "server": "cloudflare",
+    "cf-ray": "7b30ecf38a8db7cd-AMS",
+    "alt-svc": "h3=\":443\"; ma=86400, h3-29=\":443\"; ma=86400"
+  },
+  "reasonPhrase": "OK",
+  "statusCode": 200
+}

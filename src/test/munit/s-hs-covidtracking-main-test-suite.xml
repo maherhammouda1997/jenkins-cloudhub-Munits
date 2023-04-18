@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="s-hs-covidtracking-main-test-suite.xml" />
+	<munit:test name="s-hs-covidtracking-main-test-suite-400" doc:id="bf106991-c6a3-4bf2-86c9-c3e83ef72f85" description="Test" expectedErrorType="APIKIT:BAD_REQUEST">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="dc2bc4f1-6e6b-4bd9-897b-446f3a75c3b4" processor="apikit:router">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="s-hs-covidtracking-config" attributeName="config-ref" />
+					<munit-tools:with-attribute whereValue="cb0ddb10-9e88-4eb5-9df1-1e1e982cef25" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:BAD_REQUEST" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to s-hs-covidtracking-main" doc:id="a62baa4e-850c-483d-8796-89088ca9db6c" name="s-hs-covidtracking-main"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="40b03582-0897-44ff-a3f0-228a185b644f" actual="#[vars.httpStatus]" expected="#[400]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="s-hs-covidtracking-main-test-suite-404" doc:id="bdfe4504-3ecb-425d-a5e4-24f67bbca4f3" description="Test" expectedErrorType="APIKIT:NOT_FOUND" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="1dbca02f-7bee-4cbf-973b-dd97414114cc" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="s-hs-covidtracking-config" attributeName="config-ref" />
+					<munit-tools:with-attribute whereValue="cb0ddb10-9e88-4eb5-9df1-1e1e982cef25" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_FOUND" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to s-hs-covidtracking-main" doc:id="7956509c-43ae-4ca0-9f80-97907211f5fd" name="s-hs-covidtracking-main" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="c7ce0922-547e-4df5-acfb-7b1669a99c9b" actual="#[vars.httpStatus]" expected="#[404]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="s-hs-covidtracking-main-test-suite-405" doc:id="f5ac08a4-0c1b-4506-a3d1-e9be0de7cd35" description="Test" expectedErrorType="APIKIT:METHOD_NOT_ALLOWED" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="6f42477f-419c-403f-9250-ab33713b4d5c" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="s-hs-covidtracking-config" attributeName="config-ref" />
+					<munit-tools:with-attribute whereValue="cb0ddb10-9e88-4eb5-9df1-1e1e982cef25" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:METHOD_NOT_ALLOWED" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to s-hs-covidtracking-main" doc:id="133778bd-4d61-4168-9046-a7c95367d08e" name="s-hs-covidtracking-main" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="0f8f2e1c-e594-4dad-95c1-afc94ad8574d" actual="#[vars.httpStatus]" expected="#[405]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="s-hs-covidtracking-main-test-suite-406" doc:id="3b65eb31-4fc8-483f-a5d5-0a0bfb7f1c58" description="Test" expectedErrorType="APIKIT:NOT_ACCEPTABLE" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="c51213f2-45d5-4e7d-b613-cc6babaf1b48" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="s-hs-covidtracking-config" attributeName="config-ref" />
+					<munit-tools:with-attribute whereValue="cb0ddb10-9e88-4eb5-9df1-1e1e982cef25" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_ACCEPTABLE" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to s-hs-covidtracking-main" doc:id="bc40d1a7-f677-43e7-9573-bff9fd41dd45" name="s-hs-covidtracking-main" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="ce96db4e-b327-4451-943c-755f6877b74b" actual="#[vars.httpStatus]" expected="#[406]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="s-hs-covidtracking-main-test-suite-415" doc:id="391ee44f-61ca-42b4-ac00-8fde92a7cfc0" description="Test" expectedErrorType="APIKIT:UNSUPPORTED_MEDIA_TYPE" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="2b38e420-3599-427e-b8e8-788bce6ce02e" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="s-hs-covidtracking-config" attributeName="config-ref" />
+					<munit-tools:with-attribute whereValue="cb0ddb10-9e88-4eb5-9df1-1e1e982cef25" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:UNSUPPORTED_MEDIA_TYPE" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to s-hs-covidtracking-main" doc:id="4197ee73-6946-444b-84e5-8373ed744763" name="s-hs-covidtracking-main" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="dfb58dde-0fda-438b-9bd5-f761a247d428" actual="#[vars.httpStatus]" expected="#[415]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="s-hs-covidtracking-main-test-suite-501" doc:id="db7d5003-2b36-4d1a-b567-9c6cd12b8f6d" description="Test" expectedErrorType="APIKIT:NOT_IMPLEMENTED" >
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="14d20b57-0c64-4d3c-be59-d33e824e9296" processor="apikit:router" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="s-hs-covidtracking-config" attributeName="config-ref" />
+					<munit-tools:with-attribute whereValue="cb0ddb10-9e88-4eb5-9df1-1e1e982cef25" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_IMPLEMENTED" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to s-hs-covidtracking-main" doc:id="de34d912-5709-4061-9883-627045e30f05" name="s-hs-covidtracking-main" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="6d92a2f3-19c5-4b17-9649-5faf74e3e4de" actual="#[vars.httpStatus]" expected="#[501]" />
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
