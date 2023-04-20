@@ -33,18 +33,6 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				
-				<build>
-					<plugins>
-						<plugin>
-							<groupId>org.mule.tools.maven</groupId>
-							<artifactId>mule-maven-plugin</artifactId>
-							<version>3.8.0</version>
-							<extensions>true</extensions>
-						</plugin>
-					</plugins>
-				</build>
-
-				
 				<configuration>
 					<cloudHubDeployment>
 						<uri>https://anypoint.mulesoft.com</uri>

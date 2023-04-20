@@ -9,19 +9,6 @@
       <url>https://repository.mulesoft.org/nexus/content/repositories/releases</url>
     </pluginRepository>
   </pluginRepositories>
-  
-  <repositories>
-	  <repository>
-		<id>mulesoft-releases</id>
-		<url>https://repository.mulesoft.org/releases/</url>
-		<releases>
-		  <enabled>true</enabled>
-		</releases>
-		<snapshots>
-		  <enabled>false</enabled>
-		</snapshots>
-	  </repository>
-	</repositories>
 
   
 </settings>
