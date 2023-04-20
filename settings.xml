@@ -10,46 +10,6 @@
     </pluginRepository>
   </pluginRepositories>
   
-  <servers>
-    <server>
-      <id>anypoint-exchange-v3</id>
-      <username>mahran_hammouda_</username>
-      <password>79911997mM.</password>
-    </server>
-  </servers>
- 
-  <mirrors>
-    <mirror>
-      <id>anypoint-exchange-v3</id>
-      <url>https://maven.anypoint.mulesoft.com/api/v3/maven</url>
-      <mirrorOf>*</mirrorOf>
-    </mirror>
-  </mirrors>
-  <profiles>
-    <profile>
-      <id>default</id>
-      <repositories>
-        <repository>
-          <id>central</id>
-          <url>https://repo.maven.apache.org/maven2</url>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-        </repository>
-        <repository>
-          <id>anypoint-exchange-v3</id>
-          <url>https://maven.anypoint.mulesoft.com/api/v3/maven</url>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-        </repository>
-      </repositories>
-    </profile>
-  </profiles>
-  <activeProfiles>
-    <activeProfile>default</activeProfile>
-  </activeProfiles>
-  
 </settings>
     
 

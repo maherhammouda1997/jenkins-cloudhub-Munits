@@ -2,45 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
-	<parent>
-        <groupId>com.javastreets</groupId>
-        <artifactId>mule-maven-parent-pom</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-    </parent>
 
 	<groupId>com.mycompany</groupId>
 	<artifactId>s-hs-covidtracking</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
-	<profiles>
-		<profile>
-		<id>cloudhub</id>
-		<build>
-			<plugins>
-				<plugin>
-					<groupId>org.mule.tools.maven</groupId>
-					<artifactId>mule-maven-plugin</artifactId>
-					<configuration>
-						<deploymentType>cloudhub</deploymentType>
-						<muleVersion>${mule.version}</muleVersion> 
-						<muleHome>${mule.home}</muleHome> 
-						<applicationName>${artifactId}</applicationName> 
-						<community>${mule.runtime.community}</community> 
-					</configuration>
-					<executions>
-						<execution>
-							<id>deploy</id>
-							<phase>deploy</phase>
-							<goals>
-								<goal>deploy</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-			</plugins>
-		</build>
-		</profile>
-	</profiles>
+	
 
 	<name>s-hs-covidtracking</name>
 
