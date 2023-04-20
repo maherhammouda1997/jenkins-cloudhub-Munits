@@ -16,14 +16,14 @@ pipeline {
         stage('Build') {
             steps {
 				git 'https://github.com/maherhammouda1997/jenkins-cloudhub-Munits.git'
-				sh "mvn -Dmaven.test.failure.ignore=true clean package"
+				sh "mvn clean package"
             }
         }
 		
 		stage('Test') {
             steps {
 				git 'https://github.com/maherhammouda1997/jenkins-cloudhub-Munits.git'
-				sh "mvn test -Dmaven.test.failure.ignore=true"
+				sh "mvn -Dmaven.test.failure.ignore=true clean test"
             }
         }
         
@@ -33,7 +33,7 @@ pipeline {
 			}
             steps {			   
 				git 'https://github.com/maherhammouda1997/jenkins-cloudhub-Munits.git'
-				sh "mvn -Dmaven.test.failure.ignore=true clean deploy -DmuleDeploy -Dworkers=1 -Dworker.type=Micro" + 
+				sh "mvn clean deploy -DmuleDeploy -Dworkers=1 -Dworker.type=Micro" + 
 				" -DapplicationName=${env.applicationName} -DmuleVersion=${env.muleVersion} -Denvironment=${env.environment}" +
 				" -Dusername=${ANYPOINT_CREDENTIALS_USR} -Dpassword=${ANYPOINT_CREDENTIALS_PSW}" 
  				
