@@ -42,11 +42,9 @@
 						<workers>${workers}</workers>
 						<workerType>${worker.type}</workerType>
 					</cloudHubDeployment>
-				</configuration>
-				
-				<configuration>
 					<classifier>mule-application</classifier>
 				</configuration>
+				
 			</plugin>
 			<plugin>
 				<groupId>com.mulesoft.munit.tools</groupId>
