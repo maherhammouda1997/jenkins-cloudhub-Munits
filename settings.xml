@@ -9,6 +9,45 @@
       <url>https://repository.mulesoft.org/nexus/content/repositories/releases</url>
     </pluginRepository>
   </pluginRepositories>
+  
+  <servers>
+    <server>
+      <id>anypoint-exchange-v3</id>
+      <username>your-username</username>
+      <password>your-password</password>
+    </server>
+  </servers>
+ 
+  <mirrors>
+    <mirror>
+      <id>anypoint-exchange-v3</id>
+      <url>https://maven.anypoint.mulesoft.com/api/v1/organizations/your-org-id/maven</url>
+      <mirrorOf>*</mirrorOf>
+    </mirror>
+  </mirrors>
+ 
+  <profiles>
+    <profile>
+      <id>anypoint-exchange-v3</id>
+      <repositories>
+        <repository>
+          <id>anypoint-exchange-v3</id>
+          <url>https://maven.anypoint.mulesoft.com/api/v1/organizations/your-org-id/maven</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
+ 
+  <activeProfiles>
+    <activeProfile>anypoint-exchange-v3</activeProfile>
+  </activeProfiles>
+  
 </settings>
     
 
